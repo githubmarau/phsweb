@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { environment } from '../../../../web-ngx/src/environments/environment';
+import { environment } from '../../../src/environments/environment';
 import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { TokenService } from '@/_services/token.service';

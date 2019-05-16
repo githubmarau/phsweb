@@ -1,5 +1,5 @@
 {
-  "name": "angular-admin-lte-demo",
+  "name": "phs-web",
   "version": "2.0.0",
   "keywords": [
     "angular",
@@ -15,23 +15,23 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:lib": "ng build angular-admin-lte --prod",
-    "publish:lib": "npm publish dist/angular-admin-lte",
-    "build:demo": "ng build angular-admin-lte-demo --prod --base-href=/angular-admin-lte/",
-    "gh-pages": "node ./scripts/gh-pages-multi/bin/gh-pages-multi.js deploy -s dist/angular-admin-lte-demo --dry-run --tmp-dir",
+    "build:lib": "ng build phsweb --prod",
+    "publish:lib": "npm publish dist/phsweb",
+    "build:demo": "ng build phs-web --prod --base-href=/phsweb/",
+    "gh-pages": "node ./scripts/gh-pages-multi/bin/gh-pages-multi.js deploy -s dist/phs-web --dry-run --tmp-dir",
     "test": "ng test",
-    "test:demo": "ng test angular-admin-lte-demo",
-    "test:lib": "ng test angular-admin-lte",
+    "test:demo": "ng test phs-web",
+    "test:lib": "ng test phsweb",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/mledour/angular-admin-lte.git"
+    "url": "git://github.com/githubmarau/phsweb.git"
   },
   "author": {
-    "name": "Mik@",
-    "email": "michael.ledour@gmail.com"
+    "name": "Alexander Marau",
+    "email": "alexandermarau@gmail.com"
   },
   "license": "MIT",
   "private": false,
