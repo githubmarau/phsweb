@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-md-12 col-xs-12">
+    <mk-box [isCollapsable]="false" [isRemovable]="false">
+      <mk-box-content>
+        <button (click)="onCreate()" class="btn btn-info">Nova empresa</button>
+        <hr />
+        <div class="table-responsive">
+          <table datatable
+          [dtOptions]="dtOptions"
+          [dtTrigger]="dtTrigger"
+          class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Usuário</th>
+                <th width="110px">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of service.list">
+                <td>{{ item.name }}</td>
+                <td>{{ item.user }}</td>
+                <td>
+                  <div
+                    class="btn-toolbar"
+                    role="toolbar"
+                    aria-label="..."
+                    style="width:110px;"
+                  >
+                    <div
+                      class="btn-group btn-group-xs"
+                      role="group"
+                      aria-label="..."
+                    >
+                      <button (click)="onEdit(item)" class="btn btn-success">
+                        <i class="fa fa-pencil"></i>
+                      </button>
+                      <button
+                        [routerLink]="['details', item.id]"
+                        class="btn btn-primary"
+                      >
+                        <i class="fa fa-book"></i>
+                      </button>
+                      <button (click)="onDelete(item)" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </mk-box-content>
+    </mk-box>
+  </div>
+</div>

@@ -1,0 +1,330 @@
+<!-- panel-query -->
+<div class="row">
+  <div class="col-md-12">
+    <mk-box
+      header="Nome da Loja - {{ titlePanel }}"
+      [isCollapsable]="true"
+      [isRemovable]="false"
+    >
+      <div class="row">
+        <div class="col-md-12">
+          <h4>{{storeName}}</h4>
+        </div>
+        <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+          <div class="col-md-3">
+            <div
+              class="form-group has-feedback"
+              [ngClass]="{
+                'has-success': f.date_initial.valid,
+                'has-error': submitted && f.date_initial.errors
+              }"
+            >
+              <label for="date_initial" class="control-label"
+                >Data Inicial</label
+              >
+              <input
+                type="date"
+                class="form-control"
+                formControlName="date_initial"
+              />
+              <div
+                *ngIf="submitted && f.date_initial.errors"
+                class="help-block text-danger"
+              >
+                <div *ngIf="f.date_initial.errors.required">
+                  Data inicial é required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div
+              class="form-group has-feedback"
+              [ngClass]="{
+                'has-success': f.date_final.valid,
+                'has-error': submitted && f.date_final.errors
+              }"
+            >
+              <label for="date_final" class="control-label">Data Final</label>
+              <input
+                type="date"
+                class="form-control"
+                formControlName="date_final"
+              />
+              <div
+                *ngIf="submitted && f.date_final.errors"
+                class="help-block text-danger"
+              >
+                <div *ngIf="f.date_final.errors.required">
+                  Data final é required
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <button type="submit" class="btn btn-primary">Ok</button>
+          </div>
+        </form>
+      </div>
+    </mk-box>
+  </div>
+</div>
+<!-- /.panel-query -->
+
+<!-- Boxes -->
+<div class="row">
+  <!-- info-boxes -->
+  <app-dashboard-boxes [infoBoxes]="infoBoxes"></app-dashboard-boxes>
+  <!-- /.info-boxes -->
+</div>
+<!-- /.Boxes -->
+
+<!-- Gráfico de Grupos -->
+<div class="row">
+  <div class="col-md-12">
+    <div *ngIf="chartGrupos" class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{chartGrupos.header}}</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center">
+              <strong>{{chartGrupos.title}}</strong>
+            </p>
+
+            <!-- <app-ng-chart-pie
+              [chartData]="chartGrupos.data"
+              [chartLabels]="chartGrupos.labels"
+              [legendPosition]="chartGrupos.legendPosition"
+            ></app-ng-chart-pie> -->
+
+
+            <!-- Grupos Chart Canvas -->
+            <app-ng-chart-pie
+              [chartData]="chartGrupos.chart"
+            ></app-ng-chart-pie>
+            <!-- /.chart-responsive -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gráfico de totais -->
+  <div class="col-md-12">
+    <div *ngIf="chartFormasPgto" class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{chartFormasPgto.header}}</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center">
+              <strong>{{chartFormasPgto.title}}</strong>
+            </p>
+            <app-ng-chart-pie
+              [chartData]="chartFormasPgto.chart"
+            ></app-ng-chart-pie>
+
+            <!-- Grupos Chart Canvas -->
+            <!-- <app-ng-chart-pie
+              [chartData]="chartFormasPgto.data"
+              [chartLabels]="chartFormasPgto.labels"
+              [legendPosition]="chartFormasPgto.legendPosition"
+            ></app-ng-chart-pie> -->
+          </div>
+          <!-- /.chart-responsive -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.col -->
+
+  <!-- Gráfico de totais -->
+  <div class="col-md-12">
+    <div *ngIf="chartAtendHora" class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{chartAtendHora.header}}</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center">
+              <strong>{{chartAtendHora.title}}</strong>
+            </p>
+            <app-ng-chart-bar
+              [chartData]="chartAtendHora.chart"
+            ></app-ng-chart-bar>
+
+            <!-- Grupos Chart Canvas -->
+            <!-- <app-ng-chart-pie
+              [chartData]="chartFormasPgto.data"
+              [chartLabels]="chartFormasPgto.labels"
+              [legendPosition]="chartFormasPgto.legendPosition"
+            ></app-ng-chart-pie> -->
+          </div>
+          <!-- /.chart-responsive -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.col -->
+
+
+
+</div>
+<!-- /.row -->
+
+<!-- Main row -->
+<div class="row">
+  <!-- Left col -->
+  <div class="col-md-12">
+    <!-- MAP & BOX PANE -->
+    <div *ngIf="top_produtos?.length > 0" class="box box-success">
+      <div class="box-header with-border">
+        <h3 class="box-title">Top 10 Produtos</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <div class="table-responsive">
+          <table class="table no-margin">
+            <thead>
+              <tr>
+                <th width="70px">Código</th>
+                <th>Descrição</th>
+                <th class="text-right">Quantidade</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of top_produtos">
+                <td class="text-right">
+                  <strong>{{ item.cod_produto }}</strong>
+                </td>
+                <td>{{ item.descricao }}</td>
+                <td class="text-right">{{ item.quantidade }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+  <div class="col-md-12">
+    <!-- MAP & BOX PANE -->
+    <div *ngIf="top_vendedores?.length > 0" class="box box-success">
+      <div class="box-header with-border">
+        <h3 class="box-title">Ranking 3 Melhores Vendedores</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <div class="table-responsive">
+          <table class="table no-margin">
+            <thead>
+              <tr>
+                <th width="70px">Código</th>
+                <th>Nome</th>
+                <th class="text-right">Valor vendido</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of top_vendedores">
+                <td class="text-right">
+                  <strong>{{ item.codigo_vendedor }}</strong>
+                </td>
+                <td>PERGUNTAR AO PAULO ONDE OBTER</td>
+                <td class="text-right">
+                  {{ item.valor }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+  </div>
+
+  <div class="col-md-12">
+    <!-- TABLE: LATEST ORDERS -->
+    <div *ngIf="ultimas_vendas?.length > 0" class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">10 Últimas Vendas</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+        <div class="table-responsive">
+          <table class="table no-margin">
+            <thead>
+              <tr>
+                <th width="70px">Código</th>
+                <th class="text-center">Qtd. Ítens</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Data-Hora</th>
+                <th class="text-right">Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of ultimas_vendas">
+                <td class="text-right">
+                  <strong>{{ item.pedido }}</strong>
+                </td>
+                <td class="text-center">Implementar</td>
+                <td class="text-center"><span class="label label-success">Confirmada</span></td>
+                <td class="text-center">
+                  {{ item.data_hora }}
+                </td>
+                <td class="text-right">
+                  {{ item.valor_venda }}
+                </td>
+              </tr>
+              <!-- <tr>
+                  <td><a href="#">OR1848</a></td>
+                  <td>3</td>
+                  <td><span class="label label-warning">Em Aberto</span></td>
+                  <td>
+                    ...
+                  </td>
+                </tr>
+                <tr>
+                  <td><a href="#">OR1848</a></td>
+                  <td>6</td>
+                  <td><span class="label label-danger">Cancelada</span></td>
+                  <td>
+                    R$ 54.12
+                  </td>
+                </tr> -->
+            </tbody>
+          </table>
+        </div>
+        <!-- /.table-responsive -->
+      </div>
+      <!-- /.box-body -->
+      <!-- <div class="box-footer clearfix">
+        <a
+          href="javascript:void(0)"
+          class="btn btn-sm btn-info btn-flat pull-left"
+          >Place New Order</a
+        >
+        <a
+          href="javascript:void(0)"
+          class="btn btn-sm btn-default btn-flat pull-right"
+          >View All Orders</a
+        >
+      </div> -->
+      <!-- /.box-footer -->
+    </div>
+    <!-- /.box -->
+  </div>
+  <!-- /.col -->
+</div>
+<!-- /.row -->

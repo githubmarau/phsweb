@@ -1,13 +1,16 @@
 <div class="navbar-custom-menu">
   <ul class="nav navbar-nav">
     <!-- Messages: style can be found in dropdown.less -->
-    <li mk-dropdown type="list" [isWrapper]="false" class="messages-menu">
+    <!-- <li mk-dropdown type="list" [isWrapper]="false" class="messages-menu">
       <mk-dropdown-toggle>
         <a #toggleElement>
           <i class="fa fa-envelope-o"></i>
           <span class="label label-success">4</span>
         </a>
       </mk-dropdown-toggle>
+
+
+
       <mk-dropdown-menu>
         <li class="header">You have 4 messages</li>
         <li>
@@ -191,20 +194,21 @@
           <a href="#">View all tasks</a>
         </li>
       </mk-dropdown-menu>
-    </li>
+    </li> -->
+
     <li mk-dropdown type="list" [isWrapper]="false" class="user user-menu">
       <mk-dropdown-toggle>
         <a #toggleElement>
-          <img src="assets/img/user2-160x160.jpg" class="user-image" alt="User Image">
-          <span class="hidden-xs">Alexander Pierce</span>
+          <img src="{{currentUser?.avatar_url}}" class="user-image" alt="User Image">
+          <span class="hidden-xs">{{currentUser?.first_name}}</span>
         </a>
       </mk-dropdown-toggle>
       <mk-dropdown-menu>
         <li class="user-header">
-          <img src="assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="{{currentUser?.avatar_url}}" class="img-circle" alt="User Image">
 
           <p>
-            Alexander Pierce - Web Developer
+            {{currentUser?.first_name}}
             <small>Member since Nov. 2012</small>
           </p>
         </li>
@@ -223,10 +227,10 @@
         </li>
         <li class="user-footer">
           <div class="pull-left">
-            <a href="#" class="btn btn-default btn-flat">Profile</a>
+            <button [routerLink]="['profile', currentUser?.id]" class="btn btn-default btn-flat">Perfil</button>
           </div>
           <div class="pull-right">
-            <a href="#" class="btn btn-default btn-flat">Sign out</a>
+            <button (click)="onLogout()" class="btn btn-default btn-flat">Logout</button>
           </div>
         </li>
       </mk-dropdown-menu>

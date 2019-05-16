@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -11,6 +12,7 @@ import { SidebarRightInnerComponent } from './sidebar-right-inner/sidebar-right-
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule,
     HttpClientModule,
     DropdownModule,

@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-12 col-xs-12">
+    <mk-box [isCollapsable]="false" [isRemovable]="false">
+      <mk-box-content>
+        <button (click)="onCreate()" class="btn btn-info">Nova loja</button>
+        <hr />
+        <p *ngIf="!service.list.length > 0">Nenhuma loja vinculada a esta empresa</p>
+        <div class="table-responsive">
+          <table datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+            class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Nome da loja</th>
+                <th>Empresa</th>
+                <th>Usuário</th>
+                <th width="110px">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of service.list">
+                <td>{{ item.name }}</td>
+                <td>{{ item.company_name }}</td>
+                <td>{{ item.user }}</td>
+                <td>
+                  <div class="btn-toolbar" role="toolbar" aria-label="...">
+                    <div
+                      class="btn-group btn-group-xs"
+                      role="group"
+                      aria-label="..."
+                    >
+                      <button (click)="onEdit(item)" class="btn btn-success">
+                        <i class="fa fa-pencil"></i>
+                      </button>
+                      <button (click)="onDelete(item)" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                      <button *ngIf="!isSelected(item.id)" (click)="onSelect(item)" class="btn btn-primary">
+                        <i class="fa fa-check"></i>
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </mk-box-content>
+    </mk-box>
+  </div>
+</div>

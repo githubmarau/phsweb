@@ -1,0 +1,121 @@
+<div>
+  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+    <input type="hidden" formControlName="id" />
+    <div class="modal-header">
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="onClose()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title" id="add-modal-label">{{ title }}</h4>
+    </div>
+    <div class="modal-body">
+
+      <div class="form-group has-feedback" [ngClass]="{'has-success': f.name.valid, 'has-error': submitted && f.name.errors}" >
+        <label for="name" class="control-label">Nome</label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Nome" />
+        <div *ngIf="submitted && f.name.errors" class="help-block text-danger" >
+          <div *ngIf="f.name.errors.required">
+            Nome é required
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group has-feedback">
+        <label for="company_id" class="control-label">Empresa</label>
+        <select type="text" class="form-control" formControlName="company_id">
+            <option value="">--Selecione--</option>
+            <option *ngFor="let item of companiesService.list" value={{item.id}}>{{item.name}}</option>
+          </select>
+      </div>
+
+      <div class="form-group has-feedback" [ngClass]="{'has-success': f.driver.valid, 'has-error': submitted && f.driver.errors}" >
+        <label for="driver" class="control-label">Driver do banco</label>
+        <input type="text" class="form-control" formControlName="driver" placeholder="Driver do banco de dados" />
+        <div *ngIf="submitted && f.driver.errors" class="help-block text-danger" >
+          <div *ngIf="f.driver.errors.required">
+            Driver é required
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group has-feedback" [ngClass]="{'has-success': f.host.valid, 'has-error': submitted && f.host.errors}" >
+        <label for="host" class="control-label">Host</label>
+        <input type="text" class="form-control" formControlName="host" placeholder="Nome do host ou endereço IP" />
+        <div *ngIf="submitted && f.host.errors" class="help-block text-danger" >
+          <div *ngIf="f.host.errors.required">
+            Host é required
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group has-feedback" [ngClass]="{'has-success': f.port.valid, 'has-error': submitted && f.port.errors}" >
+        <label for="port" class="control-label">Número da porta</label>
+        <input type="text" class="form-control" formControlName="port" placeholder="Número da porta" />
+        <div *ngIf="submitted && f.port.errors" class="help-block text-danger" >
+          <div *ngIf="f.port.errors.required">
+            Número da porta é required
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group has-feedback" [ngClass]="{'has-success': f.database.valid, 'has-error': submitted && f.database.errors}" >
+        <label for="database" class="control-label">Banco de dados</label>
+        <input type="text" class="form-control" formControlName="database" placeholder="Banco de dados" />
+        <div *ngIf="submitted && f.database.errors" class="help-block text-danger" >
+          <div *ngIf="f.database.errors.required">
+            Banco de dados é required
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group has-feedback" [ngClass]="{'has-success': f.username.valid, 'has-error': submitted && f.username.errors}" >
+        <label for="username" class="control-label">Nome de usuário</label>
+        <input type="text" class="form-control" formControlName="username" placeholder="Nome de usuário" />
+        <div *ngIf="submitted && f.username.errors" class="help-block text-danger" >
+          <div *ngIf="f.username.errors.required">
+            Nome de usuário é required
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group has-feedback" [ngClass]="{'has-success': f.password.valid, 'has-error': submitted && f.password.errors}" >
+        <label for="password" class="control-label">Senha do usuário</label>
+        <input type="text" class="form-control" formControlName="password" placeholder="Senha do usuário" />
+        <div *ngIf="submitted && f.password.errors" class="help-block text-danger" >
+          <div *ngIf="f.password.errors.required">
+            Senha do usuário é required
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group has-feedback" [ngClass]="{'has-success': f.charset.valid, 'has-error': submitted && f.charset.errors}" >
+        <label for="charset" class="control-label">Charset</label>
+        <input type="text" class="form-control" formControlName="charset" placeholder="Charset" />
+        <div *ngIf="submitted && f.charset.errors" class="help-block text-danger" >
+          <div *ngIf="f.charset.errors.required">
+            Charset é required
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-default"
+        data-dismiss="modal"
+        (click)="onClose()"
+      >
+        Cancelar
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+        Salvar dados
+      </button>
+    </div>
+  </form>
+</div>

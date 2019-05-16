@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-md-4">
+
+      <!-- Profile Image -->
+      <div class="box box-primary">
+        <div class="box-body box-profile">
+          <!-- <img
+            class="profile-user-img img-responsive img-circle"
+            src="{{ user.avatar_url }}"
+            alt="User profile picture"
+          /> -->
+
+          <h3 class="profile-username text-center">{{service.company?.name}}</h3>
+
+          <!-- <p class="text-muted text-center">{{service.company.user.email}}</p> -->
+
+          <ul class="list-group list-group-unbordered">
+            <li class="list-group-item">
+              <b>Pertence ao usuário</b>
+              <p class="pull-right">{{service.company?.user.FullName}}</p>
+            </li>
+            <li class="list-group-item">
+              <b>Email do usuário</b>
+              <p class="pull-right">{{service.company?.user.email}}</p>
+            </li>
+            <li class="list-group-item">
+              <b>Número de lojas</b>
+              <p class="pull-right">{{service.company?.stores.length}}</p>
+            </li>
+            <li class="list-group-item">
+              <b>Registrado em</b>
+              <p class="pull-right">{{service.company?.created_at | date}}</p>
+            </li>
+            <li class="list-group-item">
+              <b>Atualizado em</b>
+              <p class="pull-right">{{service.company?.updated_at | date}}</p>
+            </li>
+          </ul>
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+
+    </div>
+    <!-- /.col -->
+    <div class="col-md-8">
+
+      <mk-box header="Lista de lojas" boxColor="success" [isCollapsable]="false" [isRemovable]="false">
+        <mk-box-content>
+
+          <!-- <app-company-stores [stores]="service.company?.stores"></app-company-stores> -->
+
+          <p *ngIf="!service.company?.stores?.length > 0">Nenhuma loja vinculada a esta empresa</p>
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of service.company?.stores">
+                  <td>{{ item.name }}</td>
+                  <td width="120px">
+                    <div class="btn-toolbar" role="toolbar" aria-label="...">
+                      <div
+                        class="btn-group btn-group-xs"
+                        role="group"
+                        aria-label="..."
+                      >
+                        <button *ngIf="!isSelected(item.id)" (click)="onSelect(item)" class="btn btn-primary">
+                          <i class="fa fa-check"></i>
+                        </button>
+                        <p *ngIf="isSelected(item.id)">
+                          Selecionado
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </mk-box-content>
+      </mk-box>
+
+    </div>
+  </div>

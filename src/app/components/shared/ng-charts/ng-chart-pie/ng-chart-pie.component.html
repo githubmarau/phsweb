@@ -1,0 +1,25 @@
+<div style="display: block;" *ngIf="pieChart" class="chart">
+  <div class="row">
+    <div class="col-md-8 col-lg-6">
+      <canvas
+        baseChart
+        [data]="pieChart.data"
+        [labels]="pieChart.labels"
+        [chartType]="pieChart.type"
+        [options]="pieChart.options"
+        [plugins]="pieChart.plugins"
+        [colors]="pieChart.colors"
+        [legend]="pieChart.legend"
+      >
+      </canvas>
+    </div>
+    <div class="col-md-4 col-lg-6">
+        <ul class="chart-legend clearfix list-inline">
+          <li *ngFor="let item of pieChart.legendsCustom">
+            <i class="fa fa-circle" [ngStyle]="{'color': item.color}"></i>
+            {{item.label}} - {{item.value}}
+          </li>
+        </ul>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div *ngFor="let box of infoBoxes" class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+  <div class="info-box bg-{{ box.class_color }}">
+    <span class="info-box-icon"
+      ><i class="fa fa-{{ box.class_icon }}"></i
+    ></span>
+    <div class="info-box-content">
+      <span class="info-box-text">{{ box.description }}</span>
+      <span class="info-box-number">{{ box.value }}</span>
+      <div class="progress">
+        <div class="progress-bar" style="width: 50%"></div>
+      </div>
+      <span class="progress-description">
+        {{ box.note }}
+      </span>
+    </div>
+  </div>
+</div>

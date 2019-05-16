@@ -1,0 +1,77 @@
+<!-- <router-outlet></router-outlet> -->
+<div class="row">
+  <div class="col-md-12 col-xs-12">
+    <mk-box [isCollapsable]="false" [isRemovable]="false">
+      <mk-box-header>
+        <!-- <button type="button" class="btn btn-info" data-toggle="ffffff"
+      data-target="#modal-create-user">Adicionar novo usuário
+    </button>
+     -->
+        <button type="button" class="btn btn-info" (click)="onCreate()">
+          Novo usuário
+        </button>
+      </mk-box-header>
+      <mk-box-content>
+        <div class="table-responsive">
+            <!-- <table *ngIf="dtOptions.data" datatable [dtOptions]="dtOptions" [dtTrigger]="service.trigger" class="row-border hover"></table> -->
+          <table
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+            id="table-users"
+            class="row-border hover table table-bordered table-striped"
+          >
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th width="100px">Papel</th>
+                <th width="50px">Conectado</th>
+                <th width="50px">Ativo</th>
+                <th width="100px">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of service.list">
+                <td>{{ item.FullName }}</td>
+                <td>{{ item.email }}</td>
+                <td>{{ item.role }}</td>
+                <td>{{ item.connected ? "Sim" : "Não" }}</td>
+                <td>{{ item.active ? "Sim" : "Não" }}</td>
+                <td>
+                  <div class="btn-toolbar" role="toolbar" aria-label="..." style="width:100px;">
+                    <div
+                      class="btn-group btn-group-xs"
+                      role="group"
+                      aria-label="..."
+                    >
+                      <button (click)="onEdit(item)" class="btn btn-success">
+                        <i class="fa fa-pencil"></i>
+                      </button>
+                      <button
+                        [routerLink]="['profile', item.id]"
+                        class="btn btn-primary"
+                      >
+                        <i class="fa fa-book"></i>
+                      </button>
+                      <button
+                        (click)="onChangePassword(item)"
+                        class="btn btn-warning"
+                      >
+                        <i class="fa fa-asterisk"></i>
+                      </button>
+                      <button (click)="onDelete(item)" class="btn btn-danger">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </mk-box-content>
+      <!-- <mk-box-footer>Rodapé</mk-box-footer> -->
+    </mk-box>
+  </div>
+</div>

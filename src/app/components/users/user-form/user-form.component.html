@@ -1,0 +1,114 @@
+<div>
+  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="onClose()"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title" id="add-modal-label">{{ title }}</h4>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" formControlName="id" />
+      <!-- form start -->
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" formControlName="active" />Usuário ativo
+        </label>
+      </div>
+
+      <div
+        class="form-group has-feedback"
+        [ngClass]="{
+          'has-success': f.first_name.valid,
+          'has-error': submitted && f.first_name.errors
+        }"
+      >
+        <label for="first_name" class="control-label">Primeiro Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="first_name"
+          placeholder="Primeiro Nome"
+        />
+        <div
+          *ngIf="submitted && f.first_name.errors"
+          class="help-block text-danger"
+        >
+          <div *ngIf="f.first_name.errors.required">
+            Primeiro nome é required
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="form-group has-feedback"
+        [ngClass]="{
+          'has-success': f.last_name.valid,
+          'has-error': submitted && f.last_name.errors
+        }"
+      >
+        <label for="last_name" class="control-label">Último Nome</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="last_name"
+          placeholder="Último Nome"
+        />
+        <div
+          *ngIf="submitted && f.last_name.errors"
+          class="help-block text-danger"
+        >
+          <div *ngIf="f.last_name.errors.required">
+            Último nome é required
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="form-group has-feedback"
+        [ngClass]="{
+          'has-success': f.first_name.valid,
+          'has-error': submitted && f.first_name.errors
+        }"
+      >
+        <label for="email" class="control-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          formControlName="email"
+          placeholder="Email"
+        />
+        <div *ngIf="submitted && f.email.errors" class="help-block text-danger">
+          <div *ngIf="f.email.errors.required">
+            Email é required
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group has-feedback">
+        <label for="role" class="control-label">Função no sistema</label>
+        <select type="text" class="form-control" formControlName="role">
+          <option value="">--Selecione--</option>
+          <option value="User">Usuário</option>
+          <option value="Admin">Admin</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-default"
+        data-dismiss="modal"
+        (click)="onClose()"
+      >
+        Cancelar
+      </button>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Salvar dados</button>
+    </div>
+  </form>
+</div>

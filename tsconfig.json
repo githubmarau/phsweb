@@ -17,6 +17,9 @@
       "dom"
     ],
     "paths": {
+      "@/*": [
+        "src/app/*"
+      ],
       "angular-admin-lte": [
         "library/angular-admin-lte/src"
       ]

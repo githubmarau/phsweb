@@ -1,0 +1,102 @@
+<div class="row">
+  <div class="col-md-3">
+
+    <!-- Profile Image -->
+    <div class="box box-primary">
+      <div class="box-body box-profile">
+        <img
+          class="profile-user-img img-responsive img-circle"
+          src="{{ service.user?.avatar_url }}"
+          alt="User profile picture"
+        />
+
+        <h3 class="profile-username text-center">{{ service.user?.FullName }}</h3>
+
+        <p class="text-muted text-center">{{ service.user?.role }}</p>
+
+        <ul class="list-group list-group-unbordered">
+          <li class="list-group-item">
+            <b>Email</b>
+            <p class="pull-right">{{ service.user?.email }}</p>
+          </li>
+          <li class="list-group-item">
+            <b>Criado em</b>
+            <p class="pull-right">{{ service.user?.created_at | date }}</p>
+          </li>
+          <li class="list-group-item">
+            <b>Atualizado em</b>
+            <p class="pull-right">{{ service.user?.updated_at | date }}</p>
+          </li>
+        </ul>
+
+        <button (click)="onChangePassword(service.user)" class="btn btn-primary btn-block"><b>Trocar senha</b></button>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+
+
+  </div>
+  <!-- /.col -->
+  <div class="col-md-9">
+
+    <mk-box header="Lista de empresas" boxColor="success" [isCollapsable]="false" [isRemovable]="false">
+      <!-- <mk-box-header>Lista de lojas</mk-box-header> -->
+      <mk-box-content>
+
+          <!-- <app-user-companies [companies]="service.user?.companies"></app-user-companies> -->
+
+          <div class="table-responsive">
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of service.user?.companies" (click)="onSelectCompany(item)">
+                    <td>{{item.name}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+
+      </mk-box-content>
+    </mk-box>
+
+  </div>
+  <!-- /.col -->
+  <div class="col-md-9">
+
+    <mk-box header="Lista de lojas" boxColor="success" [isCollapsable]="false" [isRemovable]="false">
+      <!-- <mk-box-header>Lista de lojas</mk-box-header> -->
+      <mk-box-content>
+
+          <!-- <app-user-stores></app-user-stores> -->
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th width="110px">Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of service?.stores">
+                  <td>{{ item.name }}</td>
+                  <td>
+                    <button *ngIf="!isSelected(item.id)" (click)="onSelectStore(item)" class="btn btn-primary btn-xs">Selecionar</button>
+                    <p *ngIf="isSelected(item.id)">Selecionado</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+      </mk-box-content>
+    </mk-box>
+
+  </div>
+</div>

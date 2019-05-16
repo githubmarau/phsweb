@@ -1,0 +1,24 @@
+<div style="display: block;" *ngIf="barChart" class="chart">
+  <div class="row">
+    <div class="col-md-9 col-lg-7">
+      <canvas
+        baseChart
+        [datasets]="barChart.datasets"
+        [labels]="barChart.labels"
+        [chartType]="barChart.type"
+        [options]="barChart.options"
+        [plugins]="barChart.plugins"
+        [legend]="barChart.legend"
+      >
+      </canvas>
+    </div>
+    <div class="col-md-9 col-lg-5">
+        <ul class="chart-legend clearfix">
+          <li *ngFor="let item of barChart.legendsCustom">
+            <i class="fa fa-circle" [ngStyle]="{'color': item.color}"></i>
+            {{item.label}} - {{item.value}}
+          </li>
+        </ul>
+      </div>
+  </div>
+</div>
