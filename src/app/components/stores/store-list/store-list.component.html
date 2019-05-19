@@ -4,7 +4,7 @@
       <mk-box-content>
         <button (click)="onCreate()" class="btn btn-info">Nova loja</button>
         <hr />
-        <p *ngIf="!service.list.length > 0">Nenhuma loja vinculada a esta empresa</p>
+        <p *ngIf="!(service.list.length > 0)">Nenhuma loja vinculada a esta empresa</p>
         <div class="table-responsive">
           <table datatable
             [dtOptions]="dtOptions"

@@ -10,6 +10,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./store-form.component.css']
 })
 export class StoreFormComponent implements OnInit {
+  submitted = false;
   form: FormGroup;
   title = 'Novo registro';
   store: Store;
@@ -18,7 +19,7 @@ export class StoreFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private service: StoresService,
-    private companiesService: CompaniesService,
+    public companiesService: CompaniesService,
     private bsModalRef: BsModalRef,
   ) { }
 
@@ -42,6 +43,7 @@ export class StoreFormComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onSubmit() {
+    this.submitted = true;
     if (this.form.valid) {
       if (!this.form.get('id').value)
         this.create(this.form.value);

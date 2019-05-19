@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api_url: 'http://localhost/phsapi/api'
+//  api_url: 'http://localhost/phsapi/api'
+  api_url: 'https://phsweb.000webhostapp.com/phs/api'
 };
 
 /*

@@ -51,7 +51,7 @@
 
           <!-- <app-company-stores [stores]="service.company?.stores"></app-company-stores> -->
 
-          <p *ngIf="!service.company?.stores?.length > 0">Nenhuma loja vinculada a esta empresa</p>
+          <p *ngIf="!(service.company?.stores?.length > 0)">Nenhuma loja vinculada a esta empresa</p>
           <div class="table-responsive">
             <table class="table table-bordered table-hover">
               <thead>

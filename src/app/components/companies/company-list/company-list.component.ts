@@ -29,7 +29,7 @@ export class CompanyListComponent implements OnInit, OnDestroy, AfterViewInit {
   dtElement: DataTableDirective;
 
   constructor(
-    private service: CompaniesService,
+    public service: CompaniesService,
     private bsModalService: BsModalService,
   ) { }
 

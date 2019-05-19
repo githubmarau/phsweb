@@ -10,13 +10,14 @@ import { AuthenticationService, UsersService } from '@/_services';
   styleUrls: ['./user-password.component.css']
 })
 export class UserPasswordComponent implements OnInit {
+  submitted = false;
   title = "Mudança de senha";
   user: User;
   form: FormGroup;
   event: EventEmitter<any> = new EventEmitter();
 
   constructor(
-    private authenticate: AuthenticationService,
+    public authenticate: AuthenticationService,
     private service: UsersService,
     private fb: FormBuilder,
     private bsModalRef: BsModalRef
@@ -45,6 +46,7 @@ export class UserPasswordComponent implements OnInit {
 
   // submete o formulário
   onSubmit(){
+    this.submitted = true;
     if(!this.form.valid){
       return;
     }

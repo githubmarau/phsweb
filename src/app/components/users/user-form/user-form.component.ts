@@ -10,6 +10,7 @@ import { User } from '@/_models/user-model';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent implements OnInit {
+  submitted = false;
   title = 'Novo registro';
   form: FormGroup;
   user: User;
@@ -39,6 +40,7 @@ export class UserFormComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onSubmit() {
+    this.submitted = true;
     if (this.form.valid) {
       if (!this.form.get('id').value)
         this.create(this.form.value);

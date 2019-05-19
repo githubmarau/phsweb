@@ -29,7 +29,7 @@ export class StoreListComponent implements OnInit, OnDestroy, AfterViewInit {
   };
 
   constructor(
-    private service: StoresService,
+    public service: StoresService,
     private bsModalService: BsModalService,
   ) { }
 

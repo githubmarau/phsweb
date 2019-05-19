@@ -35,7 +35,7 @@ export class UserListComponent implements OnInit, OnDestroy, AfterViewInit{
   dtElement: DataTableDirective;
 
   constructor(
-    private service: UsersService,
+    public service: UsersService,
     private bsModalService: BsModalService,
     ) { }
 

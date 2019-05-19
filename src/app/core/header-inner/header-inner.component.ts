@@ -8,7 +8,7 @@ import { User } from '@/_models/user-model';
   templateUrl: './header-inner.component.html'
 })
 export class HeaderInnerComponent implements OnInit, OnDestroy {
-  private currentUser: User;
+  currentUser: User;
   constructor(
     private router: Router,
     private authenticationService: AuthenticationService

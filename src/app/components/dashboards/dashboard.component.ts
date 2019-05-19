@@ -17,6 +17,7 @@ import { Dashboard } from '@/_models/dashboard-model';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  submitted = false;
   chartGrupos: any;
   chartFormasPgto: any;
   chartAtendHora: any;
@@ -75,7 +76,7 @@ export class DashboardComponent implements OnInit {
   get f() { return this.form.controls };
 
   onSubmit(){
-
+    this.submitted = true;
     this.queryParams = {
       loja: localStorage.getItem('sId'),
       date_initial: this.datePipe.transform(this.f.date_initial.value, 'dd/MM/yyyy'),

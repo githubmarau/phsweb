@@ -14,8 +14,8 @@ import { ToastrService as NgxToastrService } from "ngx-toastr";
 })
 export class LoginComponent implements OnInit {
 
-  private loginForm: FormGroup;
-  private returnUrl: string;
+  loginForm: FormGroup;
+  returnUrl: string;
   loading = false;
   submitted = false;
   error = '' ;

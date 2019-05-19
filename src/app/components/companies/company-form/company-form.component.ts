@@ -12,6 +12,7 @@ import { Company } from '@/_models/company-model';
   styleUrls: ['./company-form.component.css']
 })
 export class CompanyFormComponent implements OnInit {
+  submitted = false;
   title = 'Novo registro';
   form: FormGroup;
   company: Company;
@@ -20,7 +21,7 @@ export class CompanyFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private service: CompaniesService,
-    private userService: UsersService,
+    public userService: UsersService,
     private bsModalRef: BsModalRef,
   ) { }
 
@@ -38,6 +39,7 @@ export class CompanyFormComponent implements OnInit {
   get f() { return this.form.controls; }
 
   onSubmit() {
+    this.submitted = true;
     if (this.form.valid) {
       if (!this.form.get('id').value)
         this.create(this.form.value);

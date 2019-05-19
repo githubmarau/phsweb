@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CompanyDetailsComponent implements OnInit {
 
   constructor(
-    private service: CompaniesService,
+    public service: CompaniesService,
     private route: ActivatedRoute,
   ) { }
 
